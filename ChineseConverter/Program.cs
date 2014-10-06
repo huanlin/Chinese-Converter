@@ -47,7 +47,7 @@ namespace ChineseConverter
             Console.WriteLine("輸出檔案: {0}", dstFileName);
             Console.WriteLine("轉換操作: {0}", dirLabel);
 
-            Dictionary<string, string> dict = null;
+            TSChineseDictionary dict = null;
             if (args.Length >= 4)
             {
                 string dictFileName = args[3];
@@ -56,12 +56,13 @@ namespace ChineseConverter
                     Console.WriteLine("檔案不存在: " + dictFileName);
                     return;
                 }
-                dict = LoadDictionary(dictFileName);
+                dict = new TSChineseDictionary();
+                dict.Load(dictFileName);
                 Console.WriteLine("使用字典: {0}", dictFileName);
             }                
 
             // 執行轉換
-            Console.WriteLine("正在轉換.....");
+            Console.WriteLine("\r\n正在轉換.....");
 
             var converter = new TSChineseConverter();
             try 
