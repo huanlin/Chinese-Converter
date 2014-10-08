@@ -67,10 +67,8 @@ lint.db
 *.dbmdl
  
 # 如果你想忽略壓縮檔或一些大檔案
-*.7z
 *.gz
 *.iso
 *.jar
 *.rar
 *.tar
-*.zip

@@ -7,12 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChineseConverter", "Chinese
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest.ChineseConverter", "UnitTest.ChineseConverter\UnitTest.ChineseConverter.csproj", "{0B6F19C6-400F-40C8-9469-CDD06ECEF93F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Doc", "Doc", "{824CBBEB-612C-484E-ACAA-1CD154CBE67B}"
-	ProjectSection(SolutionItems) = preProject
-		README.eng.md = README.eng.md
-		README.md = README.md
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
