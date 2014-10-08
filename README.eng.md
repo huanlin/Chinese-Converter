@@ -7,7 +7,7 @@ MS Word is required to run this tool. I've only tested with Word 2013. Feel free
 
 ##Usage
 
-    ChineseConverter <InputFile> <OutputFile> <ConversionDirection> [DictionaryFile]
+    tscc <InputFile> <OutputFile> <ConversionDirection> [DictionaryFile]
 
 **Arguments:**
 
@@ -19,5 +19,5 @@ MS Word is required to run this tool. I've only tested with Word 2013. Feel free
 
 **範例：**
 
-    ChineseConverter test.txt test.chs.txt t2s cht2chs.dict
+    tscc test.txt test.chs.txt t2s cht2chs.dict
 

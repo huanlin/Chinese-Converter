@@ -10,7 +10,7 @@ Chinese Converter
 
 ###使用方法
 
-    ChineseConverter <InputFile> <OutputFile> <ConversionDirection> [DictionaryFile]
+    tscc <InputFile> <OutputFile> <ConversionDirection> [DictionaryFile]
 
 **参数:**
 
@@ -22,7 +22,7 @@ Chinese Converter
 
 **范例：**
 
-    ChineseConverter README.md README.chs.md t2s cht2chs.dict
+    tscc README.md README.chs.md t2s cht2chs.dict
 
 ###原始码 
 
