@@ -12,22 +12,22 @@ namespace ChineseConverter
     /// 
     /// <para>此類別主要是為了補 MS Word 簡繁轉換之不足，作為執行 MS Word 簡繁轉換程序之前的前置轉換。例如 MS Word 並不會將「預設」轉換成「默認」。<br/>
     /// 像這類 MS Word 遺漏的詞彙，你可以自行編寫簡繁術語對應表，並利用此類別的 Load 方法來載入對應表，然後餵給 TSChineseConverter 的 Convert 方法。<br/>
-    /// 簡繁術語對應表是個純文字檔，每一行代表一個術語的簡繁對應，可以是由繁入簡，亦可由簡至繁。格式為「來源詞彙=目的詞彙」。
+    /// 簡繁術語對應表是個純文字檔，每一行代表一個術語的簡繁對應，可以是由繁入簡，亦可由簡至繁。格式為「來源詞彙=目的詞彙;原文或註解」。
     /// 比如說，你要進行繁->簡轉換，那麼你可能會編寫一個名叫 cht2chs.dict 的字典檔，內容如下：</para>
     /// 
     /// <code>
-    /// 相依性注入=依賴注入
-    /// 擴充方法=擴展方法
-    /// 預設=默認
-    /// 建構函式=構造函數
-    /// 類別名稱=類名
-    /// 類別=類型
+    /// 相依性注入=依賴注入;dependency injection
+    /// 擴充方法=擴展方法;extension method
+    /// 預設=默認=default （分號與等號都可以當作註解的分隔字元）
+    /// 建構函式=構造函數=constructor
+    /// 類別名稱=類名;class name
+    /// 型別=類型;type
     /// </code>
     /// 
     /// <para>請注意上述範例雖然用於繁->簡轉換，但是等號（'='）右邊的「目的詞彙」並不需要使用簡體字。
-    /// 這是因為此對應表會在 MS Word 轉換之前就先行套用；就如剛才提到的，此對應表是作用於 Ms Word 簡繁轉換之前的前置作業。</para>
+    /// 這是因為此對應表會在 MS Word 轉換之前就先行套用；就如剛才提到的，此對應表是作用於 MS Word 簡繁轉換之前的前置作業。</para>
     /// 
-    /// <para>建立此對應表時必須注意避免因為「來源詞彙」太短或一詞多義而造成錯誤的詞彙轉換。例如「擴充方法=擴展方法」不可簡化為「擴充=擴展」。</para>
+    /// <para>建立此對應表時必須注意避免因為「來源詞彙」太短或一詞多義而造成錯誤的詞彙轉換。例如「擴充方法=擴展方法」不要簡化為「擴充=擴展」。</para>
     /// </summary>
     public class TSChineseDictionary
     {
@@ -48,14 +48,7 @@ namespace ChineseConverter
                 string line = reader.ReadLine();
                 while (line != null)
                 {
-                    if (!String.IsNullOrWhiteSpace(line) && !line.StartsWith(";") && line.IndexOf('=') > 0)
-                    {
-                        var words = line.Split('=');
-                        if (words.Length == 2)
-                        {
-                            this.Add(words[0], words[1]);
-                        }
-                    }
+                    this.Add(line);
                     line = reader.ReadLine();
                 }
             }            
@@ -73,12 +66,21 @@ namespace ChineseConverter
 
         public TSChineseDictionary Add(string mapping)
         {
-            if (!String.IsNullOrWhiteSpace(mapping) && !mapping.StartsWith(";") && mapping.IndexOf('=') > 0)
+            if (!String.IsNullOrWhiteSpace(mapping) && !mapping.StartsWith(";"))
             {
-                var words = mapping.Split('=');
-                if (words.Length == 2)
+                int separatorIndex = mapping.IndexOf('=');
+                if (separatorIndex > 0)
                 {
-                    this.Add(words[0], words[1]);
+                    string sourceWord = mapping.Substring(0, separatorIndex);
+                    string targetWord = mapping.Substring(separatorIndex + 1);
+                    // 移除後面的註解，註解可以是分號(';')或等號('=') 
+                    char[] commentSeparators = new char[] { ';', '=' };
+                    int commentIndex = targetWord.IndexOfAny(commentSeparators);
+                    if (commentIndex > 0)
+                    {
+                        targetWord = targetWord.Substring(0, commentIndex);
+                    }
+                    this.Add(sourceWord, targetWord);
                 }
             }
             return this;

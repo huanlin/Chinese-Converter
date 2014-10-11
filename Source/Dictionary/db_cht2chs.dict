@@ -1,0 +1,4 @@
+交易=事務;transaction
+資料存取=數據訪問;data access
+巢狀查詢=嵌套查詢;nested query
+觸發程序=觸發器;trigger
