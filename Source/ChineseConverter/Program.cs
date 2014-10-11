@@ -11,7 +11,7 @@ namespace ChineseConverter
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("ChineseConverter v0.1 by Huan-Lin Tsai (2014)");
+            Console.WriteLine("ChineseConverter v0.1.2 by Huan-Lin Tsai (2014)");
 
             if (args.Length < 3)
             {
