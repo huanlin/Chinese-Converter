@@ -26,5 +26,23 @@ namespace UnitTest.ChineseConverter
                 Assert.AreEqual(result, expectedResult);
             }
         }
+
+        [TestMethod]
+        public void TestNestedDefinition()
+        {
+            // 測試巢狀定義。所謂的巢狀定義指的是：一筆對應的來源字串包含於另一筆對應的目標字串。
+            var myDict = new TSChineseDictionary();
+            myDict.Load("NestedMappingTest.dict");
+
+            Assert.AreEqual(myDict.HasError, true); // 應該要能偵測到字典檔裡面有巢狀定義的情形。
+
+            string input = "從應用程式組態檔中讀取欲使用的類別名稱";
+            string expectedResult = "从应用程序配置文件中读取欲使用的类名";
+            using (var converter = new TSChineseConverter())
+            {
+                string result = converter.ToSimplifiedChinese(input, myDict);
+                Assert.AreEqual(result, expectedResult);                
+            }
+        }
     }
 }

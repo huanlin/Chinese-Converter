@@ -34,11 +34,21 @@ namespace ChineseConverter
         // 在搜尋取代字串時，要先處理長度比較長的詞彙，故使用此類別來將字串長度越長的詞彙排在越前面處理。
         // 例如：「類別名稱」
         private SortedDictionary<string, string> _dictionary;
+        private bool _hasError;
+        private StringBuilder _logs;
 
         public TSChineseDictionary()
         {
             var cmp = new WordMappingComparer();
             _dictionary = new SortedDictionary<string, string>(cmp);
+            _logs = new StringBuilder();
+            _hasError = false;
+        }
+
+        public void ClearLogs()
+        {
+            _logs.Clear();
+            _hasError = false;
         }
 
         public void Load(string fileName)
@@ -65,10 +75,27 @@ namespace ChineseConverter
         public TSChineseDictionary Add(string sourceWord, string targetWord)
         {
             // Skip duplicated words.
-            if (!_dictionary.ContainsKey(sourceWord))
+            if (_dictionary.ContainsKey(sourceWord))
             {
-                _dictionary.Add(sourceWord, targetWord);
+                _hasError = true;
+                _logs.AppendLine(String.Format("警告: '{0}={1}' 的來源字串重複定義, 故忽略此項。", sourceWord, targetWord));                
+                return this;
             }
+
+
+            foreach (string value in _dictionary.Values) 
+            {
+                if (value.Contains(sourceWord)) 
+                {
+                    // 如果來源字串是先前定義過的目標字串，則忽略。否則會出現後面的定義蓋掉先前的定義（巢狀替換）。
+                    string fmt = "警告: 來源字串 '{0}' 已包含在先前定義的目標字串中 ('{1}'), 故忽略此項。";
+                    _logs.AppendLine(String.Format(fmt, sourceWord, value));
+                    _hasError = true;
+                    return this;
+                }
+            }
+
+            _dictionary.Add(sourceWord, targetWord);
             return this;
         }
 
@@ -118,6 +145,22 @@ namespace ChineseConverter
             foreach (var key in _dictionary.Keys)
             {
                 Console.WriteLine(key);
+            }
+        }
+
+        public bool HasError
+        {
+            get
+            {
+                return _hasError;
+            }
+        }
+
+        public string Logs
+        {
+            get
+            {
+                return _logs.ToString();
             }
         }
     }

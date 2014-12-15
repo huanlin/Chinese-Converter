@@ -11,7 +11,7 @@ namespace ChineseConverter
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("ChineseConverter v0.1.3 by Huan-Lin Tsai (2014)");
+            Console.WriteLine("ChineseConverter v0.2 by Huan-Lin Tsai (2014)");
 
             if (args.Length < 3)
             {
@@ -61,7 +61,16 @@ namespace ChineseConverter
                         return;
                     }                    
                     dict.Load(dictFileName);
-                    Console.WriteLine("使用字典: {0}", dictFileName);                    
+                    Console.WriteLine("使用字典: {0}", dictFileName);
+
+                    if (dict.HasError)
+                    {
+                        Console.WriteLine("發現錯誤的定義，請依下方記錄訊息來修正字典檔:");
+                        Console.WriteLine(dict.Logs);
+                        Console.WriteLine();
+                    }
+                    dict.ClearLogs();
+
                     index++;
                 }
             }                
