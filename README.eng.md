@@ -7,17 +7,17 @@ MS Word is required to run this tool. I've only tested with Word 2013. Feel free
 
 ##Usage
 
-    tscc <InputFile> <OutputFile> <ConversionDirection> [DictionaryFile]
+    tscc <InputFile> <OutputFile> <ConversionDirection> [Dictionary Files]
 
 **Arguments:**
 
  * InputFile: Input file name. UTF-8 encoding only.
  * OutputFile: Output file name. If the file exists, it will be overwritten. UTF-8 encoding only.
  * ConversionDirection: "t2s" or "s2t" represnets "Traditional to Simplified" or "Simplified to Traditional".
- * DictionaryFile: Custom dictionary file. Each line represents a mapping of one Chinese word/phrase, separated with '=' character. For example: "物件導向=面向對象". Note: this file will be used as pre-processor before invoking MS Word conversion.
+ * Dictionary File(s): Custom dictionary file. Each line represents a mapping of one Chinese word/phrase, separated with '=' character. For example: "物件導向=面向對象". Note: this file will be used as pre-processor before invoking MS Word conversion.
 
 
-**範例：**
+**Example:**
 
-    tscc test.txt test.chs.txt t2s cht2chs.dict
+    tscc test.txt test.chs.txt t2s cht2chs.dict art_cht2chs.dict
 

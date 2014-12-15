@@ -1,18 +1,16 @@
-;========================================================
-;字典檔: Programming
-;
-;格式1：來源詞彙=目的詞彙;原文或說明
-;格式2：來源詞彙=目的詞彙=原文或說明
-;
-;以分號開頭的那一列都會被視為註解。
-;========================================================
-相依性注入=依賴注入;dependency injection
+相依性注入=依賴注入=dependency injection
 擴充方法=擴展方法;extension method
 可擴充性=可擴展性;extensibility
 預設=默認;default
+內建=自帶;built-in
 建構函式=構造函數;constructor
+建構式注入=构造函数注入
+建構式=构造函数
 類別名稱=類名;class name
 類別庫=類庫;class library
+類別=類型;class
+物件導向=面向對象;object oriented
+物件=對象;object
 批次=批量;batch
 原始程式碼=源代碼;source code
 原始碼=源代碼;source code
@@ -22,6 +20,37 @@
 除錯=調試;debug
 偵錯=調試;debug
 註解=注釋;comment
+
+組態文件=配置文件
+組態檔==配置文件
+組態=配置
+透過=通过
+相依關係=依赖关系
+相依性=依赖性
+相依類型=依赖类型
+軟體開發實務=软件开发实践
+呼叫端=调用端
+呼叫=调用
+修正臭蟲=修复 bug
+針對介面寫程式=面向接口编程
+介面=接口;interface
+登入=登录
+雙因素驗證=兩步驟驗證
+相依反轉原則=依赖倒置原则
+訊息推播=信息推送
+
+擴充機制=扩展机制
+展現層=表示层
+商業邏輯層=业务逻辑层
+商業邏輯=业务逻辑
+資料存取層=数据访问层
+資料傳送物件=数据传输对象;DTO
+檢視模型=视图模型;view model
+組件參考=组件引用
+專案參考=項目引用;project reference (Visual Studio)
+物件關聯對應=对象关系映射
+桌上型=桌面
+
 分散式交易=分布式事務;distributed transaction
 列舉=枚舉;enumeration
 堆積=堆;heap
@@ -29,7 +58,6 @@
 呼叫方法=調用方法;calling a function
 實作=實現;implementation
 實體化=實例化;instanciate
-介面=接口;interface
 迴圈=循環;loop
 多載=重載;overload
 效能=性能;performance
@@ -53,7 +81,6 @@
 整合=集成;integrate
 埠=端口;port
 伺服器端=服務器端;server side
-專案參考=工程引用;project reference (Visual Studio)
 示範=演示;demostration
 二分搜尋=二分查找;binary search
 二元樹=二叉數;binary tree

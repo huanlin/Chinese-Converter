@@ -75,7 +75,6 @@ namespace ChineseConverter
                 converter.Convert(srcFileName, dstFileName, convDirection, dict);
                 Console.WriteLine();
                 Console.WriteLine("轉換完畢!");
-                converter.Dispose();
             }
             catch (Exception ex) 
             {

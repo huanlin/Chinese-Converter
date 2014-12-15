@@ -6,27 +6,27 @@ Chinese Converter
 由于此工具使用了 MS Word 来进行简繁转换，故你的 Windows 作业环境必须有安装 MS Word。
 我只在 Word 2013 上测试过。若您发现任何问题，欢迎回报 bugs。
 
-注：此文档的简体中文版 README.chs.md 就是利用此工具产生的。
+注：此文件的简体中文版 README.chs.md 就是利用此工具产生的。
 
 ###使用方法
 
-    tscc <InputFile> <OutputFile> <ConversionDirection> [DictionaryFile]
+    tscc <InputFile> <OutputFile> <ConversionDirection> [Dictionary File(s)]
 
 **参数:**
 
  * InputFile: 输入档名。目前仅支持 UTF-8 编码。
  * OutputFile: 输出档名。目前仅支持 UTF-8 编码。若档案已存在，将会被覆盖。
  * ConversionDirection: "t2s" 或 "s2t"，分别表示「繁->简」或「简->繁」。
- * DictionaryFile: 字典文件。每一行代表一个以 '=' 号分隔的简繁术语对应，例如：「面向对象=面向对象」。注：此字典文件系用于前置转换作业，亦即输入档案会先经过此字典文件的转换，然后才喂给 MS Word  进行简繁／繁简转换。
+ * Dictionary File(s): 字典文件。支持多个字典文件，文件名以空白分隔。注：字典文件系用于前置转换作业，亦即输入档案会先经过此字典文件的转换，然后才喂给 MS Word  进行简繁／繁简转换。
 
 
 **范例：**
 
-    tscc README.md README.chs.md t2s cht2chs.dict
+    tscc README.md README.chs.md t2s cht2chs.dict art_cht2chs.dict
 
-###源代码 
+###原始码 
 
-完整源代码：<https://github.com/huanlin/Chinese-Converter>
+完整原始码：<https://github.com/huanlin/Chinese-Converter>
 
 其中的 Dictionary 文件夹是用来存放自定义的简繁术语字典。我打算在这里维护一份自己使用的字典，每次碰到缺的词汇就加进去。
 如果您也有用这个工具，欢迎协助添加字典文件。关于字典文件的详细说明，请参考下一节。
@@ -39,12 +39,12 @@ Chinese Converter
 
  * 来源词汇与目标词汇之间是以等号（'='）分隔。
  * 目标词汇之后可以用分号或等号再衔接原文词汇。
- * 若一列文字是以分号（';'）开头，会被视为注释。
+ * 若一列文字是以分号（';'）开头，会被视为批注。
  
 参考以下范例：
 
-    ;这是注释，不会被处理。
-    依赖注入=依赖注入;dependency injection
+    ;这是批注，不会被处理。
+    相依性注入=依赖注入;dependency injection
     对象=对象=object
 
 注意：添加词汇至字典文件时，如果其他字典文件已经存在该词汇，则程序在执行转换时，只会取「第一个」词汇对照，而忽略其余重复定义的词汇。

@@ -125,11 +125,12 @@ namespace ChineseConverter
             {
                 // 關閉 Word 檔
                 object dontSave = WdSaveOptions.wdDoNotSaveChanges;
-                ((_Document)doc).Saved = true;
-                ((_Document)doc).Close(ref dontSave);
-                // 確保 Document COM 物件 釋放
+
                 if (doc != null) 
                 {
+                    // 確保 Document COM 物件釋放
+                    ((_Document)doc).Saved = true;
+                    ((_Document)doc).Close(ref dontSave);
                     Marshal.FinalReleaseComObject(doc);
                 }
                     

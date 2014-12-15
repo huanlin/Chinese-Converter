@@ -22,7 +22,7 @@ Chinese Converter
 
 **範例：**
 
-    tscc README.md README.chs.md t2s cht2chs.dict art_cht2chs.dict
+    tscc README.md README.chs.md t2s cht2chs.dict
 
 ###原始碼 
 
