@@ -54,6 +54,14 @@ namespace ChineseConverter
             }            
         }
 
+        public void Load(string[] fileNames)
+        {
+            foreach (string fname in fileNames)
+            {
+                Load(fname);
+            }
+        }
+
         public TSChineseDictionary Add(string sourceWord, string targetWord)
         {
             // Skip duplicated words.

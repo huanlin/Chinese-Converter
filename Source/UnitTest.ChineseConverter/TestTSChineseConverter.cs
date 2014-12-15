@@ -20,9 +20,11 @@ namespace UnitTest.ChineseConverter
 
             string input = "Convert() 是一個擴充方法，它所擴充的類別名稱是 Foo。Foo 類別有提供預設建構函式。";
             string expectedResult = "Convert() 是一个扩展方法，它所扩充的类名是 Foo。Foo 类有提供默认构造函数。";
-            var converter = new TSChineseConverter();
-            string result = converter.ToSimplifiedChinese(input, myDict);
-            Assert.AreEqual(result, expectedResult);
+            using (var converter = new TSChineseConverter())
+            {
+                string result = converter.ToSimplifiedChinese(input, myDict);
+                Assert.AreEqual(result, expectedResult);
+            }
         }
     }
 }

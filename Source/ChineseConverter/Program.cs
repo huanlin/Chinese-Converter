@@ -11,7 +11,7 @@ namespace ChineseConverter
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("ChineseConverter v0.1.2 by Huan-Lin Tsai (2014)");
+            Console.WriteLine("ChineseConverter v0.1.3 by Huan-Lin Tsai (2014)");
 
             if (args.Length < 3)
             {
@@ -50,15 +50,20 @@ namespace ChineseConverter
             TSChineseDictionary dict = null;
             if (args.Length >= 4)
             {
-                string dictFileName = args[3];
-                if (!File.Exists(dictFileName))
-                {
-                    Console.WriteLine("檔案不存在: " + dictFileName);
-                    return;
-                }
                 dict = new TSChineseDictionary();
-                dict.Load(dictFileName);
-                Console.WriteLine("使用字典: {0}", dictFileName);
+                int index = 3;
+                while (index < args.Length)
+                {
+                    string dictFileName = args[index];
+                    if (!File.Exists(dictFileName))
+                    {
+                        Console.WriteLine("檔案不存在: " + dictFileName);
+                        return;
+                    }                    
+                    dict.Load(dictFileName);
+                    Console.WriteLine("使用字典: {0}", dictFileName);                    
+                    index++;
+                }
             }                
 
             // 執行轉換
@@ -70,11 +75,16 @@ namespace ChineseConverter
                 converter.Convert(srcFileName, dstFileName, convDirection, dict);
                 Console.WriteLine();
                 Console.WriteLine("轉換完畢!");
+                converter.Dispose();
             }
             catch (Exception ex) 
             {
                 Console.WriteLine("轉換時發生錯誤: ");
                 Console.WriteLine(ex.Message);
+            }
+            finally 
+            {
+                converter.Dispose();
             }
         }
 
@@ -105,7 +115,7 @@ namespace ChineseConverter
         static void ShowUsage() 
         {
             Console.WriteLine("Usage:");
-            Console.WriteLine("ChineseConverter <InputFile> <OutputFile> <ConversionDirection> [DictionaryFile]");
+            Console.WriteLine("ChineseConverter <InputFile> <OutputFile> <ConversionDirection> [Dictionary File(s)]");
             Console.WriteLine();
             Console.WriteLine("Arguments:");
             Console.WriteLine("ConversionDirection - t2s or s2t.");
