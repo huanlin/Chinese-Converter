@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk"> 
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <Authors>Michael Tsai</Authors>
+    <Company>Michael Tsai</Company>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommandLineParser" Version="2.2.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.0-preview1-final" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
+    <PackageReference Include="Serilog.Extensions.Logging" Version="2.0.2" />
+    <PackageReference Include="Serilog.Sinks.File" Version="4.0.1-dev-00795" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ChineseConverter\ChineseConverter.csproj" />
+  </ItemGroup>
+
+</Project>

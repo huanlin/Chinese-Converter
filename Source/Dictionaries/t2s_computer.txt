@@ -1,3 +1,10 @@
+;=====================================
+;格式1：繁體中文=簡體中文
+;格式2：繁體中文=簡體中文=英文
+;範例1：專案=項目=project
+;範例2：專案=項目
+;分號後面的文字都會被忽略（不處理）。
+;=====================================
 相依性注入=依賴注入=dependency injection
 擴充方法=擴展方法;extension method
 可擴充性=可擴展性;extensibility
@@ -83,3 +90,7 @@
 示範=演示;demostration
 二分搜尋=二分查找;binary search
 二元樹=二叉數;binary tree
+交易=事務;transaction
+資料存取=數據訪問;data access
+巢狀查詢=嵌套查詢;nested query
+觸發程序=觸發器;trigger

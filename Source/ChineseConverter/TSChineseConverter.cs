@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Runtime.InteropServices;
 using System.IO;
-using Microsoft.Office.Interop.Word;
 
 namespace ChineseConverter
 {
@@ -17,34 +15,16 @@ namespace ChineseConverter
 
     /// <summary>
     /// Traditional & Simplified Chinese converter.
-    /// 
-    /// 初版原始碼參考了「黑暗執行緒」的文章：http://blog.darkthread.net/post-2013-08-15-office-tcscconverter.aspx
-    /// 感謝黑大!
     /// </summary>
-    public class TSChineseConverter : IDisposable
+    public class TSChineseConverter
     {
-        private Application wordApp = null;
-        private Document doc = null;
-
         public TSChineseConverter()
         {
-            wordApp = new Application();
-            wordApp.Visible = false;
-            doc = wordApp.Documents.Add();
         }
 
         private string MSWordConvertChinese(string input, TSChineseConverterDirection direction)
         {
             string result = null;
-            var tcscDirection = WdTCSCConverterDirection.wdTCSCConverterDirectionSCTC;
-            if (direction == TSChineseConverterDirection.TraditionalToSimplified)
-            {
-                tcscDirection = WdTCSCConverterDirection.wdTCSCConverterDirectionTCSC;
-            }
-            doc.Content.Text = input;
-            doc.Content.TCSCConverter(tcscDirection, true, true);
-            // 去除轉換之後字串結尾多出來的 \r 字元
-            result = doc.Content.Text.TrimEnd('\r');
             return result;
         }      
 
@@ -118,29 +98,5 @@ namespace ChineseConverter
 
         #endregion Shortcut methods
 
-        public void Dispose()
-        {
-            // 確實關閉 Word Application
-            try
-            {
-                // 關閉 Word 檔
-                object dontSave = WdSaveOptions.wdDoNotSaveChanges;
-
-                if (doc != null) 
-                {
-                    // 確保 Document COM 物件釋放
-                    ((_Document)doc).Saved = true;
-                    ((_Document)doc).Close(ref dontSave);
-                    Marshal.FinalReleaseComObject(doc);
-                }
-                    
-                doc = null;
-                ((_Application)wordApp).Quit(ref dontSave);
-            }
-            finally
-            {
-                Marshal.FinalReleaseComObject(wordApp);
-            }
-        }
     }
 }

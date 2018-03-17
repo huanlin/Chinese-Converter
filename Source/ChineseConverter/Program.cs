@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using Microsoft.Extensions.DependencyInjection;
+using Serilog;
 
 namespace ChineseConverter
 {
@@ -8,7 +10,20 @@ namespace ChineseConverter
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("ChineseConverter v0.2 by Huan-Lin Tsai (2014)");
+            // Setup DI
+            var serviceProvider = new ServiceCollection() // Microsoft.Extensions.DependencyInjection
+                .AddLogging(loggingBuilder => loggingBuilder.AddSerilog(dispose: true))
+                .BuildServiceProvider();
+
+            // Create logger
+            Log.Logger = new LoggerConfiguration()
+                .Enrich.FromLogContext()
+                .WriteTo.File("d:/0/1.log", Serilog.Events.LogEventLevel.Information)
+                .CreateLogger();
+
+            Log.Information("MergePhrase 應用程式開始執行。");
+
+            Console.WriteLine("ChineseConverter v2.0 by Huan-Lin Tsai (2018)");
 
             if (args.Length < 3)
             {
@@ -47,7 +62,7 @@ namespace ChineseConverter
             TSChineseDictionary dict = null;
             if (args.Length >= 4)
             {
-                dict = new TSChineseDictionary();
+                dict = new TSChineseDictionary(Log.Logger);
                 int index = 3;
                 while (index < args.Length)
                 {
@@ -62,11 +77,10 @@ namespace ChineseConverter
 
                     if (dict.HasError)
                     {
-                        Console.WriteLine("發現錯誤的定義，請依下方記錄訊息來修正字典檔:");
-                        Console.WriteLine(dict.Logs);
+                        Console.WriteLine("處理過程中發現錯誤或值得注意的事項，請閱讀 log 檔案以了解細節。");
                         Console.WriteLine();
                     }
-                    dict.ClearLogs();
+                    dict.Reset();
 
                     index++;
                 }
@@ -86,10 +100,6 @@ namespace ChineseConverter
             {
                 Console.WriteLine("轉換時發生錯誤: ");
                 Console.WriteLine(ex.Message);
-            }
-            finally 
-            {
-                converter.Dispose();
             }
         }
 

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "MergePhrase": {
+      "commandName": "Project",
+      "commandLineArgs": "-i d:\\00\\t2s_phrase.json -o d:\\00\\out.txt"
+    }
+  }
+}
