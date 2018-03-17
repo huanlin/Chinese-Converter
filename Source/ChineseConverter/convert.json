@@ -1,0 +1,28 @@
+﻿{
+    "Direction": "T2S", // 轉換方向：T2S=繁至簡, S2T=簡至繁。
+    "OverwriteExistingFile": "True",
+    "InputFilePath": "..\\..\\", // 輸入檔案路徑
+    "OutputFilePath": "", // 輸出檔案路徑
+    "DictionaryFiles": // 使用的字典檔（最上面的詞彙有高優先權，當詞彙重複定義時，採用高優先的）
+    [
+        "common_cht2chs.dict",
+        "programming_cht2chs.dict"
+    ],
+    "TextFiles": // 欲處理的文字檔
+    [
+        // 輸出檔名若不指定，則使用 *.cht.* 或 *.chs.* 的方式命名。
+        { "InputFile": "ch00_preface.md", "OutputFile": "" },
+        { "InputFile": "ch01_introduction.md", "OutputFile": "" },
+        { "InputFile": "ch02_di_patterns.md ", "OutputFile": "" },
+        { "InputFile": "ch03_di_container.md", "OutputFile": "" },
+        { "InputFile": "ch04_di_layered_arch.md", "OutputFile": "" },
+        { "InputFile": "ch05_di_webapi.md ", "OutputFile": "" },
+        { "InputFile": "ch06_di_recipes.md", "OutputFile": "" },
+        { "InputFile": "ch07_unity.md", "OutputFile": "" },
+        { "InputFile": "ch99_appendix1.md", "OutputFile": "" },
+        { "InputFile": "ch99_appendix2.md", "OutputFile": "" },
+        { "InputFile": "toc-brief.txt", "OutputFile": "" },
+        { "InputFile": "toc-detail.txt", "OutputFile": "" },
+        { "InputFile": "other_preview.md", "OutputFile": "" }
+    ]
+}
