@@ -27,22 +27,21 @@ namespace ChineseConverter
         // 在搜尋取代字串時，要先處理長度比較長的詞彙，故使用此類別來將字串長度越長的詞彙排在越前面處理。
         // 例如簡體中文的「一出戲」（一齣戲）和「一出戲院」。
         private SortedDictionary<string, string> _dictionary;
-        private bool _hasError;
         private ILogger _logger;
 
         public bool OverwriteExistingPhrase { get; set; } = false;
+        public bool HasError { get; private set; } = false;
 
         public TSChineseDictionary(ILogger logger)
         {
             var cmp = new WordMappingLengthComparer();
             _dictionary = new SortedDictionary<string, string>(cmp);
             _logger = logger;
-            _hasError = false;
         }
 
         public void Reset()
         {
-            _hasError = false;
+            HasError = false;
         }
 
         public void Load(string fileName)
@@ -85,12 +84,12 @@ namespace ChineseConverter
         {
             foreach (string value in _dictionary.Values) 
             {
-                if (value.Contains(sourceWord)) 
+                if (value == sourceWord) // 檢查是否循環定義
                 {
-                    // 如果來源字串是先前定義過的目標字串，則忽略。否則會出現後面的定義蓋掉先前的定義（巢狀替換）。
-                    string s = $"來源字串 '{sourceWord}' 已包含在先前定義的目標字串中 ('{value}'), 故忽略此項。";
+                    // 如果來源字串是先前定義過的目標字串，則忽略。否則會出現後面的定義蓋掉先前的定義。
+                    string s = $"來源字串【{sourceWord}】 已出現在先前定義的目標字串中, 故忽略此項。";
                     _logger.Warning(s);
-                    _hasError = true;
+                    HasError = true;
                     return this;
                 }
             }
@@ -101,11 +100,11 @@ namespace ChineseConverter
                 {
                     string orgTargetWord = _dictionary[sourceWord];
                     _dictionary[sourceWord] = targetWord;
-                    _logger.Information($"'{sourceWord}={orgTargetWord}' 的目標字串被新的 {targetWord} 取代。");
+                    _logger.Information($"【{sourceWord}={orgTargetWord}】 的目標字串被新的 【{targetWord}】 取代。");
                 }
                 else
                 {
-                    _logger.Warning($"'{sourceWord}={targetWord}' 的來源字串重複定義, 故忽略此項。");
+                    _logger.Warning($"【{sourceWord}={targetWord}】 的來源字串重複定義, 故忽略此項。");
                 }
             }
             else
@@ -129,7 +128,7 @@ namespace ChineseConverter
                 {
                     string sourceWord = mapping.Substring(0, separatorIndex);
                     string targetWord = mapping.Substring(separatorIndex + 1);
-                    // 移除後面的註解，註解可以是分號(';')或等號('=') 
+                    // 移除後面的註解。註解可以是分號(';')或等號('=') 
                     char[] commentSeparators = new char[] { ';', separator };
                     int commentIndex = targetWord.IndexOfAny(commentSeparators);
                     if (commentIndex > 0)
@@ -172,14 +171,6 @@ namespace ChineseConverter
             foreach (var key in _dictionary.Keys)
             {
                 Console.WriteLine(key);
-            }
-        }
-
-        public bool HasError
-        {
-            get
-            {
-                return _hasError;
             }
         }
     }

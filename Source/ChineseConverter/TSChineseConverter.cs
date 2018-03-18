@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
+﻿using System.IO;
 
 namespace ChineseConverter
 {
@@ -16,7 +11,7 @@ namespace ChineseConverter
     /// <summary>
     /// Traditional & Simplified Chinese converter.
     /// </summary>
-    public class TSChineseConverter
+    public class TSChineseConverter : ITSChineseConverter
     {
         public TSChineseConverter()
         {
@@ -63,7 +58,7 @@ namespace ChineseConverter
                     string line = srcFileReader.ReadLine();
                     while (line != null)
                     {
-                        string convertedLine = this.Convert(line, direction, customDictionary);
+                        string convertedLine = Convert(line, direction, customDictionary);
                         dstFileWriter.WriteLine(convertedLine);
                         line = srcFileReader.ReadLine();
                     }
@@ -76,7 +71,7 @@ namespace ChineseConverter
         #region Shortcut methods
         public string ToSimplifiedChinese(string input, TSChineseDictionary customDictionary = null)
         {
-            string result = this.Convert(input, TSChineseConverterDirection.TraditionalToSimplified, customDictionary);
+            string result = Convert(input, TSChineseConverterDirection.TraditionalToSimplified, customDictionary);
             return result;
         }
 

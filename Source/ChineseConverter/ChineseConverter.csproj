@@ -11,12 +11,6 @@
 	<PackageId>chinese-converter</PackageId>
   </PropertyGroup>
   <ItemGroup>
-    <EmbeddedResource Include="..\..\tongwen-core\dictionaries\s2t_char.json" Link="s2t_char.json" />
-    <EmbeddedResource Include="..\..\tongwen-core\dictionaries\s2t_phrase.json" Link="s2t_phrase.json" />
-    <EmbeddedResource Include="..\..\tongwen-core\dictionaries\t2s_char.json" Link="t2s_char.json" />
-    <EmbeddedResource Include="..\..\tongwen-core\dictionaries\t2s_phrase.json" Link="t2s_phrase.json" />
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
