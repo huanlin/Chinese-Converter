@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27428.1
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32127.271
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChineseConverter", "ChineseConverter\ChineseConverter.csproj", "{B395A62E-B988-4370-AB66-D76A4FC49C9E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MergePhrase", "MergePhrase\MergePhrase.csproj", "{3AD252B4-0761-458B-A044-CC21B4F93217}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MergePhrase", "MergePhrase\MergePhrase.csproj", "{3AD252B4-0761-458B-A044-CC21B4F93217}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestChineseConverter", "UnitTestChineseConverter\UnitTestChineseConverter.csproj", "{5250EE78-AC84-4195-AF54-D816FCC73054}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTestChineseConverter", "Tests\UnitTestChineseConverter.csproj", "{6103261D-27EF-410F-8EA5-A7383EA1A74F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{3AD252B4-0761-458B-A044-CC21B4F93217}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3AD252B4-0761-458B-A044-CC21B4F93217}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3AD252B4-0761-458B-A044-CC21B4F93217}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5250EE78-AC84-4195-AF54-D816FCC73054}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5250EE78-AC84-4195-AF54-D816FCC73054}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5250EE78-AC84-4195-AF54-D816FCC73054}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5250EE78-AC84-4195-AF54-D816FCC73054}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6103261D-27EF-410F-8EA5-A7383EA1A74F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6103261D-27EF-410F-8EA5-A7383EA1A74F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6103261D-27EF-410F-8EA5-A7383EA1A74F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6103261D-27EF-410F-8EA5-A7383EA1A74F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
