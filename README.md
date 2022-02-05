@@ -8,7 +8,7 @@ Chinese Converter
 
 註：此文件的簡體中文版 README.chs.md 就是利用此工具產生的。
 
-###使用方法
+### 使用方法
 
     tscc <InputFile> <OutputFile> <ConversionDirection> [Dictionary File(s)]
 
@@ -24,14 +24,14 @@ Chinese Converter
 
     tscc README.md README.chs.md t2s cht2chs.dict art_cht2chs.dict
 
-###原始碼 
+### 原始碼 
 
 完整原始碼：<https://github.com/huanlin/Chinese-Converter>
 
 其中的 Dictionary 資料夾是用來存放自定義的簡繁術語字典。我打算在這裡維護一份自己使用的字典，每次碰到缺的詞彙就加進去。
 如果您也有用這個工具，歡迎協助添加字典檔。關於字典檔的詳細說明，請參考下一節。
 
-###字典檔案
+### 字典檔案
 
 字典檔是個純文字檔案，用來定義存放自定義的簡繁轉換詞彙。請注意，字典檔案只是用來補足 MS Word 未提供的術語，而不是完整的術語對照表。
 
