@@ -23,7 +23,7 @@ namespace ChineseConverter
 
             Log.Information("MergePhrase 應用程式開始執行。");
 
-            Console.WriteLine("ChineseConverter v2.0 by Huan-Lin Tsai (2018)");
+            Console.WriteLine("ChineseConverter v0.3 by Huan-Lin Tsai (2022)");
 
             if (args.Length < 3)
             {
